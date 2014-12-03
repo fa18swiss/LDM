@@ -1,5 +1,5 @@
 import ply.yacc as yacc
-from lex5 import tokens
+from lex import tokens
 import AST
 
 

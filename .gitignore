@@ -1,2 +1,4 @@
 ﻿generated/
 *.out
+.idea/
+__pycache__/
