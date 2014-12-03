@@ -59,7 +59,7 @@ def compile(self):
 
 
 if __name__ == "__main__":
-    from parser5 import parse
+    from parserLDM import parse
 
     name = "source.txt"
     prog = open(name).read()
