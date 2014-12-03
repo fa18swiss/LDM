@@ -1,0 +1,15 @@
+a = 0;
+while (a-10) {
+    print a;
+    a = a + 1;
+    b = 0;
+    while (b-5) {
+        print b;
+        b = b + 1;
+    };
+};
+c = 0;
+while (c-5) {
+    c = c + 1;
+    d = -1;
+};
