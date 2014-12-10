@@ -7,6 +7,10 @@ class IndentedCode:
     TABULATION = "    "
 
     def __init__(self):
+        """
+        Constucteur
+        :return:
+        """
         self.__deep = 0
         self.__sb = StringIO()
         self.__needTab = True
@@ -38,11 +42,20 @@ class IndentedCode:
         self.__needTab = True
 
     def writeTabs(self):
+        """
+        Indente le code si necessaire
+        :return: None
+        """
         if self.__needTab:
             self.__sb.write("".join([self.TABULATION for num in range(self.__deep)]))
         self.__needTab = False
 
     def write(self, text):
+        """
+        Ecrit du texte. Indente si nécessaire
+        :param text: Teste à écrir
+        :return: None
+        """
         self.writeTabs()
         self.__sb.write(text)
 
@@ -57,6 +70,10 @@ class IndentedCode:
 
 
     def __str__(self):
+        """
+        Méthode to stirng
+        :return: Retourne tout le texte
+        """
         return self.__sb.getvalue()
 
 if __name__ == "__main__":
