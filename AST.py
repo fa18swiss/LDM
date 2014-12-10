@@ -3,10 +3,10 @@
 ''' Petit module utilitaire pour la construction, la manipulation et la 
 représentation d'arbres syntaxiques abstraits.
 
-Sûrement plein de bugs et autres surprises. À prendre comme un 
+Sûrement plein de bugs et autres surprises. à prendre comme un 
 "work in progress"...
-Notamment, l'utilisation de pydot pour représenter un arbre syntaxique cousu
-est une utilisation un peu "limite" de graphviz. Ça marche, mais le layout n'est
+Notamment, l'utilisation de pydot pour reprénter un arbre syntaxique cousu
+est une utilisation un peu "limite" de graphviz. ça marche, mais le layout n'est
 pas toujours optimal...
 '''
 
@@ -44,7 +44,7 @@ class Node:
     
     def __repr__(self):
         return self.type
-    
+
     def makegraphicaltree(self, dot=None, edgeLabels=True):
             if not dot: dot = pydot.Dot()
             dot.add_node(pydot.Node(self.ID,label=repr(self), shape=self.shape))
@@ -78,7 +78,7 @@ class Node:
                 edge = pydot.Edge(self.ID,c.ID)
                 edge.set_color(color)
                 edge.set_arrowsize('.5')
-                # Les arrêtes correspondant aux coutures ne sont pas prises en compte
+                # Les arrês correspondant aux coutures ne sont pas prises en compte
                 # pour le layout du graphe. Ceci permet de garder l'arbre dans sa représentation
                 # "standard", mais peut provoquer des surprises pour le trajet parfois un peu
                 # tarabiscoté des coutures...
@@ -133,7 +133,7 @@ def addToClass(cls):
     ''' Décorateur permettant d'ajouter la fonction décorée en tant que méthode
     à une classe.
     
-    Permet d'implémenter une forme élémentaire de programmation orientée
+    Permet d'implémenter une forme émémentaire de programmation orientée
     aspects en regroupant les méthodes de différentes classes implémentant
     une même fonctionnalité en un seul endroit.
     
