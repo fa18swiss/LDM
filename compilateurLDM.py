@@ -18,8 +18,6 @@ def compile(self, retour):
 def compile(self, retour):
     retour.write(str(self.tok))
 
-
-
 @addToClass(AST.OpNode)
 def compile(self, retour):
     try:
@@ -57,7 +55,18 @@ def compile(self, retour):
 def compile(self, retour):
     for c in self.children:
         c.compile(retour)
-
+@addToClass(AST.IfNode)
+def compile(self, retour):
+    retour.write("if ")
+    self.children[0].compile(retour)
+    retour.writeLine(":")
+    retour.indent()
+    self.children[2].compile(retour)
+    retour.desindent()
+    retour.writeLine("else:")
+    retour.indent()
+    self.children[1].compile(retour)
+    retour.desindent()
 
 if __name__ == "__main__":
     from parserLDM import parse
