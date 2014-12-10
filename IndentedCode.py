@@ -1,10 +1,11 @@
 from io import StringIO
-from os import linesep
+
 class IndentedCode:
     """
     Classe pour indenter du code
     """
     TABULATION = "    "
+    ENDL = "\n"
 
     def __init__(self):
         """
@@ -38,7 +39,7 @@ class IndentedCode:
         Ajoute un ligne vide
         :return: None
         """
-        self.__sb.write(linesep)
+        self.__sb.write(self.ENDL)
         self.__needTab = True
 
     def writeTabs(self):
