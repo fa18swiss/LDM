@@ -22,15 +22,13 @@ def compile(self, retour):
 
 @addToClass(AST.OpNode)
 def compile(self, retour):
-    arg0 = None
-    arg1 = None
     try:
         arg0 = self.children[0]
         arg1 = self.children[1]
     except:
         arg0 = None
         arg1 = self.children[0]
-    if(arg0):
+    if arg0:
         arg0.compile(retour)
         retour.write(" ")
     retour.write(operations[self.op])
