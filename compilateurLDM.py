@@ -60,9 +60,10 @@ def compile(self, retour):
     retour.write("if ")
     self.children[0].compile(retour)
     retour.writeLine(":")
-    retour.indent()
-    self.children[2].compile(retour)
-    retour.desindent()
+    if len(self.children) > 2:
+        retour.indent()
+        self.children[2].compile(retour)
+        retour.desindent()
     retour.writeLine("else:")
     retour.indent()
     self.children[1].compile(retour)
