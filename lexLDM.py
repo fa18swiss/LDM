@@ -3,13 +3,15 @@ import ply.lex as lex
 
 tokens = ( 
     'NUMBER',
-    'OPERATOR',
+    'ADD_OP',
+    'MULT_OP',
     'EQUAL_OP',
     'IDENTIFIANT',
     'ENDL'
 )
 
-t_OPERATOR = r'[¬§\\¦]'
+t_ADD_OP = r'[¬§]'
+t_MULT_OP = r'[\\¦]'
 t_EQUAL_OP = r'[~]'
 t_ENDL = r'\|'
 t_IDENTIFIANT = r'[a-zA-Z_][\w_]*'
