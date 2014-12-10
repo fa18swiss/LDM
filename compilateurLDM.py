@@ -55,19 +55,35 @@ def compile(self, retour):
 def compile(self, retour):
     for c in self.children:
         c.compile(retour)
+
 @addToClass(AST.IfNode)
 def compile(self, retour):
     retour.write("if ")
     self.children[0].compile(retour)
     retour.writeLine(":")
+    retour.indent()
     if len(self.children) > 2:
-        retour.indent()
         self.children[2].compile(retour)
-        retour.desindent()
+    else:
+        retour.writeLine("None")
+    retour.desindent()
     retour.writeLine("else:")
     retour.indent()
     self.children[1].compile(retour)
     retour.desindent()
+
+@addToClass(AST.ForNode)
+def compile(self, retour):
+    retour.write("for ")
+    self.children[0].compile(retour)
+    retour.write(" in range(int(")
+    self.children[1].compile(retour)
+    retour.write("), int(")
+    self.children[2].compile(retour)
+    retour.write(")):")
+    retour.indent()
+    self.children[3].compile(retour)
+    retour.desindent
 
 if __name__ == "__main__":
     from parserLDM import parse

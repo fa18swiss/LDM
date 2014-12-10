@@ -55,12 +55,16 @@ def p_minus(p):
     p[0] = AST.OpNode(p[1], [p[2]])
 
 def p_if(p):
-    """ instruction : IF EXPR_START expression EXPR_END IF_FALSE bloc IF_TRUE bloc
+    """instruction : IF EXPR_START expression EXPR_END IF_FALSE bloc IF_TRUE bloc
      | IF EXPR_START expression EXPR_END IF_FALSE bloc """
     try:
         p[0] = AST.IfNode([p[3], p[6], p[8]])
     except:
         p[0] = AST.IfNode([p[3], p[6]])
+def p_for(p):
+    """instruction : FOR EXPR_START IDENTIFIANT FOR_SEP expression FOR_SEP expression EXPR_END bloc """
+    p[0] = AST.ForNode([AST.TokenNode(p[3]), p[5], p[7], p[9]])
+
 
 def p_error(p):
     #print("Syntax error in line %d" % p.lineno)

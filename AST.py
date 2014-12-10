@@ -130,6 +130,9 @@ class IfNode(Node):
 class BlocNode(Node):
     type = 'BLOC'
 
+class ForNode(Node):
+    type = 'BLOC'
+
 class EntryNode(Node):
     type = 'ENTRY'
     def __init__(self):
