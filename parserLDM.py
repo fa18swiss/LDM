@@ -13,13 +13,15 @@ def p_bloc(p):
 def p_instructions(p):
     """instructions : instruction
      | instruction instructions"""
-    # TODO NODE utiliser autre chose
     try:
         try:
+            # 1er essai, si p[2] est une liste
             p[0] = [p[1]] + p[2]
         except:
+            # 2e essai, p[2] n'est pas une liste
             p[0] = [p[1]] + [p[2]]
     except:
+        #3e essai, p[2] n'existe pas
         p[0] = p[1]
 
 def p_instruction_assign(p):
