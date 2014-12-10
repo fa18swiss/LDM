@@ -1,5 +1,10 @@
 from io import StringIO
+from os import linesep
 class IndentedCode:
+    """
+    Classe pour indenter du code
+    """
+    TABULATION = "    "
 
     def __init__(self):
         self.__deep = 0
@@ -24,7 +29,7 @@ class IndentedCode:
         Ajoute un ligne vide
         :return: None
         """
-        self.__sb.write("\r\n")
+        self.__sb.write(linesep)
 
     def writeLine(self, line):
         """
@@ -32,7 +37,7 @@ class IndentedCode:
         :param line: Ligne à ajouter
         :return: None
         """
-        self.__sb.write(''.join(["    " for num in range(self.__deep)]))
+        self.__sb.write("".join([self.TABULATION for num in range(self.__deep)]))
         self.__sb.write(line)
         self.writeBlankLine()
 
