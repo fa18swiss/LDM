@@ -127,6 +127,9 @@ class WhileNode(Node):
 class IfNode(Node):
     type = 'IF'
 
+class BlocNode(Node):
+    type = 'BLOC'
+
 class EntryNode(Node):
     type = 'ENTRY'
     def __init__(self):
