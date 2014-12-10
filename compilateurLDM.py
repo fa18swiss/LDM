@@ -2,10 +2,10 @@ import AST
 from AST import addToClass
 
 operations = {
-    '+': "+",
-    '-': "-",
-    '*': "*",
-    '/': "/",
+    '¬': "+",
+    '§': "-",
+    '\\': "*",
+    '|': "/",
 }
 
 @addToClass(AST.AssignNode)
@@ -53,6 +53,7 @@ def compile(self, retour):
     retour.desindent()
 
 @addToClass(AST.ProgramNode)
+@addToClass(AST.BlocNode)
 def compile(self, retour):
     for c in self.children:
         c.compile(retour)
@@ -62,8 +63,9 @@ if __name__ == "__main__":
     from parserLDM import parse
     from IndentedCode import IndentedCode
 
-    name = "test5.txt"
-    prog = open(name).read()
+    name = "test1.txt"
+    import codecs
+    prog = codecs.open(name, "r", "UTF-8").read()
     ast = parse(prog)
 
     retour = IndentedCode()
