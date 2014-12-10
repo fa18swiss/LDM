@@ -1,21 +1,43 @@
 #-*- coding: utf-8 -*-
 import ply.lex as lex
 
-tokens = ( 
+tokens = (
+    'BLOC_START',
+    'BLOC_END',
+    'EXPR_START',
+    'EXPR_END',
     'NUMBER',
     'ADD_OP',
     'MULT_OP',
     'EQUAL_OP',
     'IDENTIFIANT',
+    'WHILE',
+    'PRINT',
+    'IF',
+    'IF_FALSE',
+    'IF_TRUE',
+    'FOR',
+    'FOR_SEP',
     'ENDL'
 )
 
+t_BLOC_START = r'\]'
+t_BLOC_END = r'\('
+t_EXPR_START = r'\}'
+t_EXPR_END = r'\['
 t_ADD_OP = r'[¬§]'
 t_MULT_OP = r'[\\¦]'
 t_EQUAL_OP = r'[~]'
 t_ENDL = r'\|'
 t_IDENTIFIANT = r'[a-zA-Z_][\w_]*'
-literals = 'éèà£üöä](}['
+t_WHILE = r'à'
+t_PRINT = r'£'
+t_IF = r'ü'
+t_IF_FALSE = r'ö'
+t_IF_TRUE = r'ä'
+t_FOR = r'é'
+t_FOR_SEP = r'è'
+literals = ''
 
 def t_NUMBER(t):
     r'\d+\.?\d*'
