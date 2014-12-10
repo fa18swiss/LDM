@@ -2,9 +2,6 @@ import ply.yacc as yacc
 from lexLDM import tokens
 import AST
 
-
-variabes = {}
-
 #def p_programme_statement(p):
 #    """programme : statement ENDL"""
 #    p[0] = AST.ProgramNode(p[1])
@@ -52,15 +49,6 @@ def p_expression_num(p):
 def p_expression_par(p):
     """expression : "(" expression ")" """
     p[0] = p[2]
-
-
-operations = {
-    '+': lambda x, y: x+y,
-    '-': lambda x, y: x-y,
-    '*': lambda x, y: x*y,
-    '/': lambda x, y: x/y,
-}
-
 
 def p_expression_op(p):
     """expression : expression ADD_OP expression
