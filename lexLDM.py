@@ -11,6 +11,7 @@ tokens = (
     'MULT_OP',
     'ASSIGN_OP',
     'IDENTIFIANT',
+    'IDENTIFIANT_STR',
     'WHILE',
     'PRINT',
     'IF',
@@ -18,6 +19,8 @@ tokens = (
     'IF_TRUE',
     'FOR',
     'FOR_SEP',
+    'STR',
+    'STR_CONCAT',
     'ENDL'
 )
 
@@ -30,6 +33,7 @@ t_MULT_OP = r'[\\¦]'
 t_ASSIGN_OP = r'[~]'
 t_ENDL = r'\|'
 t_IDENTIFIANT = r'[a-zA-Z_][\w_]*'
+t_IDENTIFIANT_STR = r'°[a-zA-Z_][\w_]*'
 t_WHILE = r'à'
 t_PRINT = r'£'
 t_IF = r'ü'
@@ -37,6 +41,8 @@ t_IF_FALSE = r'ö'
 t_IF_TRUE = r'ä'
 t_FOR = r'é'
 t_FOR_SEP = r'è'
+t_STR = r'€[^@]*@'
+t_STR_CONCAT = r'\#'
 literals = ''
 
 def t_NUMBER(t):
