@@ -1,12 +1,12 @@
 # coding: latin-1
 
 ''' Petit module utilitaire pour la construction, la manipulation et la 
-reprÃ©sentation d'arbres syntaxiques abstraits.
+représentation d'arbres syntaxiques abstraits.
 
-SÃ»rement plein de bugs et autres surprises. Ã  prendre comme un 
+Sûrement plein de bugs et autres surprises. à prendre comme un 
 "work in progress"...
-Notamment, l'utilisation de pydot pour reprÃ©nter un arbre syntaxique cousu
-est une utilisation un peu "limite" de graphviz. Ã§a marche, mais le layout n'est
+Notamment, l'utilisation de pydot pour reprénter un arbre syntaxique cousu
+est une utilisation un peu "limite" de graphviz. ça marche, mais le layout n'est
 pas toujours optimal...
 '''
 
@@ -78,10 +78,10 @@ class Node:
                 edge = pydot.Edge(self.ID,c.ID)
                 edge.set_color(color)
                 edge.set_arrowsize('.5')
-                # Les arrÃªs correspondant aux coutures ne sont pas prises en compte
-                # pour le layout du graphe. Ceci permet de garder l'arbre dans sa reprÃ©sentation
+                # Les arrês correspondant aux coutures ne sont pas prises en compte
+                # pour le layout du graphe. Ceci permet de garder l'arbre dans sa représentation
                 # "standard", mais peut provoquer des surprises pour le trajet parfois un peu
-                # tarabiscotÃ© des coutures...
+                # tarabiscoté des coutures...
                 # En commantant cette ligne, le layout sera bien meilleur, mais l'arbre nettement
                 # moins reconnaissable.
                 edge.set_constraint('false') 
@@ -116,13 +116,13 @@ class OpNode(Node):
         return "%s (%s)" % (self.op, self.nbargs)
     
 class AssignNode(Node):
-    type = '='
+    type = '~'
     
 class PrintNode(Node):
-    type = 'print'
+    type = 'PRINT'
     
 class WhileNode(Node):
-    type = 'while'
+    type = 'WHILE'
     
 class IfNode(Node):
     type = 'IF'
@@ -131,7 +131,10 @@ class BlocNode(Node):
     type = 'BLOC'
 
 class ForNode(Node):
-    type = 'BLOC'
+    type = 'FOR'
+
+class CondNode(Node):
+    type = 'COND'
 
 class EntryNode(Node):
     type = 'ENTRY'
@@ -141,16 +144,16 @@ class EntryNode(Node):
 
     
 def addToClass(cls):
-    ''' DÃ©corateur permettant d'ajouter la fonction dÃ©corÃ©e en tant que mÃ©thode
-    Ã  une classe.
+    ''' Décorateur permettant d'ajouter la fonction décorée en tant que méthode
+    à une classe.
     
-    Permet d'implÃ©menter une forme Ã©mÃ©mentaire de programmation orientÃ©e
-    aspects en regroupant les mÃ©thodes de diffÃ©rentes classes implÃ©mentant
-    une mÃªme fonctionnalitÃ© en un seul endroit.
+    Permet d'implémenter une forme émémentaire de programmation orientée
+    aspects en regroupant les méthodes de différentes classes implémentant
+    une même fonctionnalité en un seul endroit.
     
-    Attention, aprÃ¨s utilisation de ce dÃ©corateur, la fonction dÃ©corÃ©e reste dans
-    le namespace courant. Si cela dÃ©range, on peut utiliser del pour la dÃ©truire.
-    Je ne sais pas s'il existe un moyen d'Ã©viter ce phÃ©nomÃ¨ne.
+    Attention, après utilisation de ce décorateur, la fonction décorée reste dans
+    le namespace courant. Si cela dérange, on peut utiliser del pour la détruire.
+    Je ne sais pas s'il existe un moyen d'éviter ce phénomène.
     '''
     def decorator(func):
         setattr(cls,func.__name__,func)

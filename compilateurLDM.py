@@ -41,6 +41,13 @@ def compile(self, retour):
     retour.writeLine(")")
 
 
+@addToClass(AST.CondNode)
+def compile(self, retour):
+    retour.write("abs(")
+    self.children[0].compile(retour)
+    retour.write(") < 0.001")
+
+
 @addToClass(AST.WhileNode)
 def compile(self, retour):
     retour.write("while ")
@@ -50,11 +57,13 @@ def compile(self, retour):
     self.children[1].compile(retour)
     retour.desindent()
 
+
 @addToClass(AST.ProgramNode)
 @addToClass(AST.BlocNode)
 def compile(self, retour):
     for c in self.children:
         c.compile(retour)
+
 
 @addToClass(AST.IfNode)
 def compile(self, retour):
@@ -65,7 +74,7 @@ def compile(self, retour):
     if len(self.children) > 2:
         self.children[2].compile(retour)
     else:
-        retour.writeLine("None")
+        retour.writeLine("pass")
     retour.desindent()
     retour.writeLine("else:")
     retour.indent()
@@ -83,7 +92,7 @@ def compile(self, retour):
     retour.write(")):")
     retour.indent()
     self.children[3].compile(retour)
-    retour.desindent
+    retour.desindent()
 
 if __name__ == "__main__":
     from parserLDM import parse

@@ -33,7 +33,7 @@ def p_instruction_print(p):
     p[0] = AST.PrintNode(p[3])
 
 def p_instruction_while(p):
-    """instruction : WHILE EXPR_START expression EXPR_END bloc"""
+    """instruction : WHILE EXPR_START condition EXPR_END bloc"""
     p[0] = AST.WhileNode([p[3], p[5]])
 
 def p_expression_token(p):
@@ -54,9 +54,13 @@ def p_minus(p):
     """expression : ADD_OP expression %prec UMINUS"""
     p[0] = AST.OpNode(p[1], [p[2]])
 
+def p_condition(p):
+    """condition : expression """
+    p[0] = AST.CondNode(p[1])
+
 def p_if(p):
-    """instruction : IF EXPR_START expression EXPR_END IF_FALSE bloc IF_TRUE bloc
-     | IF EXPR_START expression EXPR_END IF_FALSE bloc """
+    """instruction : IF EXPR_START condition EXPR_END IF_FALSE bloc IF_TRUE bloc
+     | IF EXPR_START condition EXPR_END IF_FALSE bloc """
     try:
         p[0] = AST.IfNode([p[3], p[6], p[8]])
     except:
