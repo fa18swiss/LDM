@@ -41,7 +41,6 @@ t_IF_FALSE = r'ö'
 t_IF_TRUE = r'ä'
 t_FOR = r'é'
 t_FOR_SEP = r'è'
-t_STR = r'€[^@]*@'
 t_STR_CONCAT = r'\#'
 literals = ''
 
@@ -54,9 +53,16 @@ def t_NUMBER(t):
         t.value = 0
     return t
 
+def t_STR(t):
+    r'€[^@]*@'
+    t.value = t.value[1:-1]
+    return t
+
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
+
+
 
 
 t_ignore = ' \t\r'

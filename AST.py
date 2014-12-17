@@ -102,6 +102,16 @@ class TokenNode(Node):
         
     def __repr__(self):
         return repr(self.tok)
+
+class IdNumNode(TokenNode):
+    type = 'idNum'
+    def __repr__(self):
+        return repr("N " + self.tok)
+
+class IdStrNode(TokenNode):
+    type = 'idStr'
+    def __repr__(self):
+        return repr("S " + self.tok)
     
 class OpNode(Node):
     def __init__(self, op, children):

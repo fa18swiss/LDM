@@ -25,9 +25,11 @@ def p_instructions(p):
         p[0] = p[1]
 
 def p_instruction_assign(p):
-    """instruction : expression ASSIGN_OP IDENTIFIANT ENDL
-    | chaines ASSIGN_OP IDENTIFIANT_STR ENDL """
-    p[0] = AST.AssignNode([AST.TokenNode(p[3]), p[1]])
+    """instruction : expression ASSIGN_OP IDENTIFIANT ENDL """
+    p[0] = AST.AssignNode([AST.IdNumNode(p[3]), p[1]])
+def p_instruction_assign_str(p):
+    """instruction : chaines ASSIGN_OP IDENTIFIANT_STR ENDL """
+    p[0] = AST.AssignNode([AST.IdStrNode(p[3]), p[1]])
 
 def p_instruction_print(p):
     """instruction : PRINT EXPR_START expression EXPR_END ENDL
@@ -39,9 +41,12 @@ def p_instruction_while(p):
     p[0] = AST.WhileNode([p[3], p[5]])
 
 def p_expression_token(p):
-    """expression : NUMBER
-    | IDENTIFIANT """
+    """expression : NUMBER"""
     p[0] = AST.TokenNode(p[1])
+
+def p_expression_token_id_num(p):
+    """expression : IDENTIFIANT """
+    p[0] = AST.IdNumNode(p[1])
 
 def p_expression_op(p):
     """expression : expression ADD_OP expression
@@ -69,16 +74,19 @@ def p_if(p):
         p[0] = AST.IfNode([p[3], p[6]])
 def p_for(p):
     """instruction : FOR EXPR_START IDENTIFIANT FOR_SEP expression FOR_SEP expression EXPR_END bloc """
-    p[0] = AST.ForNode([AST.TokenNode(p[3]), p[5], p[7], p[9]])
+    p[0] = AST.ForNode([AST.IdNumNode(p[3]), p[5], p[7], p[9]])
 
 
 def p_chaine(p):
     """chaine : STR"""
     p[0] = AST.StringNode(p[1])
 
+def p_chaines_str(p):
+    """chaines : IDENTIFIANT_STR"""
+    p[0] = AST.IdStrNode(p[1])
+
 def p_chaines(p):
     """chaines : chaine
-     | IDENTIFIANT_STR
      | expression
      | chaines STR_CONCAT chaines """
     try:

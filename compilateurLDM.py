@@ -94,6 +94,17 @@ def compile(self, retour):
     self.children[3].compile(retour)
     retour.desindent()
 
+@addToClass(AST.StringNode)
+def compile(self, retour):
+    retour.write("\"%s\"" % self.tok)
+
+@addToClass(AST.StringGroupNode)
+def compile(self, retour):
+    self.children[0].compile(retour)
+    retour.write(" + ")
+    self.children[1].compile(retour)
+
+
 if __name__ == "__main__":
     from parserLDM import parse
     from IndentedCode import IndentedCode
