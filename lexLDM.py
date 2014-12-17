@@ -33,7 +33,6 @@ t_MULT_OP = r'[\\¦]'
 t_ASSIGN_OP = r'[~]'
 t_ENDL = r'\|'
 t_IDENTIFIANT = r'[a-zA-Z_][\w_]*'
-t_IDENTIFIANT_STR = r'°[a-zA-Z_][\w_]*'
 t_WHILE = r'à'
 t_PRINT = r'£'
 t_IF = r'ü'
@@ -51,6 +50,11 @@ def t_NUMBER(t):
     except ValueError:
         print ("Lind %d: Problem while parsing %s!" % (t.lineno, t.value))
         t.value = 0
+    return t
+
+def t_IDENTIFIANT_STR(t):
+    r'°[a-zA-Z_][\w_]*'
+    t.value = t.value[1:]
     return t
 
 def t_STR(t):

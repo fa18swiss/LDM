@@ -42,7 +42,7 @@ def p_instruction_while(p):
 
 def p_expression_token(p):
     """expression : NUMBER"""
-    p[0] = AST.TokenNode(p[1])
+    p[0] = AST.NumNode(p[1])
 
 def p_expression_token_id_num(p):
     """expression : IDENTIFIANT """

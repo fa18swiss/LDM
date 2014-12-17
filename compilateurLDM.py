@@ -10,13 +10,22 @@ operations = {
 
 @addToClass(AST.AssignNode)
 def compile(self, retour):
-    retour.write("%s = " % self.children[0].tok)
+    self.children[0].compile(retour)
+    retour.write(" = ")
     self.children[1].compile(retour)
     retour.writeBlankLine()
 
-@addToClass(AST.TokenNode)
+@addToClass(AST.NumNode)
 def compile(self, retour):
     retour.write(str(self.tok))
+
+@addToClass(AST.IdStrNode)
+def compile(self, retour):
+    retour.write("S_%s" % self.tok)
+
+@addToClass(AST.IdNumNode)
+def compile(self, retour):
+    retour.write("N_%s" % self.tok)
 
 @addToClass(AST.OpNode)
 def compile(self, retour):
@@ -100,9 +109,16 @@ def compile(self, retour):
 
 @addToClass(AST.StringGroupNode)
 def compile(self, retour):
-    self.children[0].compile(retour)
-    retour.write(" + ")
-    self.children[1].compile(retour)
+    for i in range(len(self.children)):
+        if i != 0:
+            retour.write(" + ")
+        child = self.children[i]
+        childIsNotStr = not (isinstance(child, AST.IdStrNode) or isinstance(child, AST.StringNode) or isinstance(child, AST.StringGroupNode))
+        if childIsNotStr:
+            retour.write("str(")
+        child.compile(retour)
+        if childIsNotStr:
+            retour.write(")")
 
 
 if __name__ == "__main__":
