@@ -102,8 +102,7 @@ def p_chaines(p):
 
         p[0] = AST.StringGroupNode(gauche + droite)
 
-    except Exception as e:
-        print(e)
+    except:
         p[0] = p[1]
 
 def p_error(p):
