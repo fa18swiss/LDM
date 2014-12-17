@@ -90,8 +90,20 @@ def p_chaines(p):
      | expression
      | chaines STR_CONCAT chaines """
     try:
-        p[0] = AST.StringGroupNode([p[1],p[3]])
-    except:
+        if isinstance(p[1], AST.StringGroupNode):
+            gauche = p[1].children
+        else:
+            gauche = [p[1]]
+
+        if isinstance(p[3], AST.StringGroupNode):
+            droite = p[3].children
+        else:
+            droite = [p[3]]
+
+        p[0] = AST.StringGroupNode(gauche + droite)
+
+    except Exception as e:
+        print(e)
         p[0] = p[1]
 
 def p_error(p):
