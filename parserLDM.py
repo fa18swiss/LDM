@@ -25,11 +25,13 @@ def p_instructions(p):
         p[0] = p[1]
 
 def p_instruction_assign(p):
-    """instruction : expression ASSIGN_OP IDENTIFIANT ENDL """
+    """instruction : expression ASSIGN_OP IDENTIFIANT ENDL
+    | chaines ASSIGN_OP IDENTIFIANT_STR ENDL """
     p[0] = AST.AssignNode([AST.TokenNode(p[3]), p[1]])
 
 def p_instruction_print(p):
-    """instruction : PRINT EXPR_START expression EXPR_END ENDL"""
+    """instruction : PRINT EXPR_START expression EXPR_END ENDL
+     |  PRINT EXPR_START chaines EXPR_END ENDL """
     p[0] = AST.PrintNode(p[3])
 
 def p_instruction_while(p):
@@ -69,6 +71,20 @@ def p_for(p):
     """instruction : FOR EXPR_START IDENTIFIANT FOR_SEP expression FOR_SEP expression EXPR_END bloc """
     p[0] = AST.ForNode([AST.TokenNode(p[3]), p[5], p[7], p[9]])
 
+
+def p_chaine(p):
+    """chaine : STR"""
+    p[0] = AST.StringNode(p[1])
+
+def p_chaines(p):
+    """chaines : chaine
+     | IDENTIFIANT_STR
+     | expression
+     | chaines STR_CONCAT chaines """
+    try:
+        p[0] = AST.StringGroupNode([p[1],p[3]])
+    except:
+        p[0] = p[1]
 
 def p_error(p):
     #print("Syntax error in line %d" % p.lineno)

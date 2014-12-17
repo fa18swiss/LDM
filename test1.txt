@@ -1,6 +1,6 @@
 ]
-    °a ~ €toto@ |
-    °b ~ °a # €titi@ |
+    €toto@ ~ °a |
+    1 # €titi@ ~ °b |
 
     3 ~ a |
     4 ¬ 2 ~ b |
