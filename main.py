@@ -14,6 +14,7 @@ Options :
     fichier            Chemin du fichier
     --pas-executable    Si définit, ne génère pas de fichier compilé en python.
                         Non compatible avec --execute
+                        --arbre doit etre définit
     --arbre             Si définit, génère l'arbre
     --execute           Execute le fichier généré.
                         Non compatible avec --pas-executable
@@ -37,22 +38,22 @@ def main():
         argLower = sys.argv[i].lower()
         if argLower == "--pas-executable":
             generateCode = False
-            if execute:
-                print(bcolors.FAIL + "Erreur : --execute et --pas-executable défini" + bcolors.ENDC)
-                showHelp()
-                return
         elif argLower == "--arbre":
             generateTree = True
         elif argLower == "--execute":
-            if not generateCode:
-                print(bcolors.FAIL + "Erreur : --execute et --pas-executable défini" + bcolors.ENDC)
-                showHelp()
-                return
             execute = True
         else:
             print(bcolors.FAIL + "Erreur : Argument '" + sys.argv[i] + "' inconnu !" + bcolors.ENDC)
             showHelp()
             return
+    if not generateCode and execute:
+        print(bcolors.FAIL + "Erreur : --execute et --pas-executable défini !" + bcolors.ENDC)
+        showHelp()
+        return
+    if not generateCode and not generateTree:
+        print(bcolors.FAIL + "Erreur : --pas-executable défini mais pas --arbre !" + bcolors.ENDC)
+        showHelp()
+        return
     tools.disablePrint()
     from parserLDM import parseFile
     from compilateurLDM import compileFile
@@ -64,8 +65,8 @@ def main():
         compiled = compileFile(filename, ast)
         print("Fichier généré dans : '%s'" % compiled)
         if execute:
-            ## todo execute
-            print("Ececuting " + compiled)
+            print("Résultat : ")
+            exec(open(compiled).read())
 
 
 if __name__ == "__main__":
