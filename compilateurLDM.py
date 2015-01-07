@@ -124,10 +124,10 @@ def compile(self, retour):
 if __name__ == "__main__":
     from parserLDM import parse
     from IndentedCode import IndentedCode
+    import tools
 
-    name = "test1.txt"
-    import codecs
-    prog = codecs.open(name, "r", "UTF-8").read()
+    name = tools.getFileNameFromArg("test1.txt")
+    prog = tools.getFileContent(name)
     ast = parse(prog)
 
     retour = IndentedCode()
@@ -136,7 +136,7 @@ if __name__ == "__main__":
 
     print(retour)
 
-    name = "%s.py" % name
+    name = tools.changeExtension(name, "py")
     outfile = open(name, "w")
     outfile.write(str(retour))
     outfile.close()

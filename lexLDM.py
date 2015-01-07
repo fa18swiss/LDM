@@ -79,8 +79,8 @@ def t_error(t):
     
 lex.lex()
 if __name__ == "__main__":
-    import codecs
-    prog = codecs.open("test1.txt", "r", "UTF-8").read()
+    import tools
+    prog = tools.getFileContent(tools.getFileNameFromArg("test1.txt"))
     lex.input(prog)
     while 1:
         tok = lex.token()

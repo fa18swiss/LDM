@@ -123,11 +123,12 @@ def parse(program):
 yacc.yacc(outputdir='generated')
 
 if __name__ == "__main__":
-    import codecs
-    prog = codecs.open("test1.txt", "r", "UTF-8").read()
+    import tools
+    name = tools.getFileNameFromArg("test1.txt")
+    prog = tools.getFileContent(name)
     result = yacc.parse(prog, debug=0)
     graph = result.makegraphicaltree()
-    name = "test1.pdf"
+    name = tools.changeExtension(name, "pdf")
     try:
         import os
         os.remove(name)
