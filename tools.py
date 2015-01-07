@@ -42,6 +42,7 @@ class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
     OKGREEN = '\033[92m'
+    OKCYAN = '\033[96m'
     WARNING = '\033[93m'
     FAIL = '\033[91m'
     ENDC = '\033[0m'
@@ -53,10 +54,14 @@ import sys
 class NullWriter(object):
     def write(self, arg):
         pass
-oldstdout = sys.stdout
-oldstderr = sys.stderr
+oldstdout = ""
+oldstderr = ""
 nullwrite = NullWriter()
 def disablePrint():
+    global oldstdout
+    global oldstderr
+    oldstdout = sys.stderr
+    oldstderr = sys.stderr
     sys.stderr = sys.stdout = nullwrite
 
 def enablePrint():

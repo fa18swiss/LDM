@@ -60,14 +60,15 @@ def main():
     tools.enablePrint()
     ast, pathTree  = parseFile(filename, generateTree)
     if generateTree:
-        print("Arbre généré dans   : '%s'" % pathTree)
+        print(bcolors.OKGREEN + ("Arbre généré dans   : '%s'" % pathTree) + bcolors.ENDC)
     if generateCode:
         compiled = compileFile(filename, ast)
-        print("Fichier généré dans : '%s'" % compiled)
+        print(bcolors.OKGREEN + ("Fichier généré dans : '%s'" % compiled) + bcolors.ENDC)
         if execute:
             print("Résultat : ")
+            print(bcolors.OKCYAN)
             exec(open(compiled).read())
-
+            print(bcolors.ENDC)
 
 if __name__ == "__main__":
     colorama.init()
