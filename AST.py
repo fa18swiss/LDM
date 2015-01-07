@@ -149,11 +149,6 @@ class ForNode(Node):
 class CondNode(Node):
     type = 'COND'
 
-class EntryNode(Node):
-    type = 'ENTRY'
-    def __init__(self):
-        Node.__init__(self, None)
-
 class StringNode(Node):
     type = 'string'
     def __init__(self, tok):
