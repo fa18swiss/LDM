@@ -122,17 +122,26 @@ def parse(program):
 
 yacc.yacc(outputdir='generated')
 
+def parseFile(file, generateTree = False):
+    import tools
+    prog = tools.getFileContent(file)
+    ast = yacc.parse(prog, debug=0)
+    if generateTree:
+        name = tools.changeExtension(file, "pdf")
+        graph = ast.makegraphicaltree()
+        try:
+            import os
+            os.remove(name)
+        except:
+            pass
+        graph.write_pdf(name)
+        return [ast, name]
+    else:
+        pass
+    return [ast, None]
+
 if __name__ == "__main__":
     import tools
     name = tools.getFileNameFromArg("test1.txt")
-    prog = tools.getFileContent(name)
-    result = yacc.parse(prog, debug=0)
-    graph = result.makegraphicaltree()
-    name = tools.changeExtension(name, "pdf")
-    try:
-        import os
-        os.remove(name)
-    except:
-        pass
-    graph.write_pdf(name)
+    result, name = parseFile(name, True)
     print("Wrote ast to " , name)

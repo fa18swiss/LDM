@@ -120,24 +120,28 @@ def compile(self, retour):
         if childIsNotStr:
             retour.write(")")
 
-
-if __name__ == "__main__":
+def compileFile(file, ast = None):
     from parserLDM import parse
     from IndentedCode import IndentedCode
     import tools
 
-    name = tools.getFileNameFromArg("test1.txt")
-    prog = tools.getFileContent(name)
-    ast = parse(prog)
+    if not ast:
+        prog = tools.getFileContent(file)
+        ast = parse(prog)
 
     retour = IndentedCode()
 
     ast.compile(retour)
 
-    print(retour)
-
-    name = tools.changeExtension(name, "py")
-    outfile = open(name, "w")
+    file = tools.changeExtension(file, "py")
+    outfile = open(file, "w")
     outfile.write(str(retour))
     outfile.close()
+    return file
+
+if __name__ == "__main__":
+    import tools
+
+    name = tools.getFileNameFromArg("test1.txt")
+    name = compileFile(name)
     print("Write output to %s" % name)
