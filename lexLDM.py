@@ -1,4 +1,4 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import ply.lex as lex
 
 tokens = (
@@ -29,7 +29,7 @@ t_BLOC_END = r'\('
 t_EXPR_START = r'\}'
 t_EXPR_END = r'\['
 t_ADD_OP = r'[¬§]'
-t_MULT_OP = r'[\\¦]'
+t_MULT_OP = r'[\\$]'
 t_ASSIGN_OP = r'[~]'
 t_ENDL = r'\|'
 t_IDENTIFIANT = r'[a-zA-Z_][\w_]*'

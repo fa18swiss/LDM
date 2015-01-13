@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import AST
 from AST import addToClass
 
@@ -5,7 +6,7 @@ operations = {
     '¬': "+",
     '§': "-",
     '\\': "*",
-    '|': "/",
+    '$': "/",
 }
 
 @addToClass(AST.AssignNode)

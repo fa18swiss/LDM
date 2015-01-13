@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import ply.yacc as yacc
 from lexLDM import tokens
 import AST

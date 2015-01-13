@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 import tools
 from tools import bcolors
 import fixpath

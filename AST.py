@@ -1,4 +1,4 @@
-# coding: latin-1
+# -*- coding: utf-8 -*-
 
 ''' Petit module utilitaire pour la construction, la manipulation et la 
 repr�sentation d'arbres syntaxiques abstraits.

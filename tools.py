@@ -1,5 +1,6 @@
+# -*- coding: utf-8 -*-
 
-def getFileNameFromArg(default = None):
+def getFileNameFromArg(default=None):
     """
     Récupère le chemin comme étant le 1er argument du fichier, sinon retourne default
     :param default:
@@ -22,6 +23,7 @@ def getFileContent(file):
     import codecs
     return codecs.open(file, "r", "UTF-8").read()
 
+
 def changeExtension(file, ext):
     """
     Change l'extension du fichier
@@ -36,7 +38,7 @@ def changeExtension(file, ext):
     ext = ext.replace(".", "")
     parts = file.split(".")[:-1]
     parts.append(ext)
-    return (".").join(parts)
+    return ".".join(parts)
 
 class bcolors:
     HEADER = '\033[95m'
