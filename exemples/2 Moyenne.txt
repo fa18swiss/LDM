@@ -1,0 +1,7 @@
+]
+    3 ~ n1 |
+    6 ~ n2 |
+    9 ~ n3 |
+    } n1 ¬ n2 ¬ n3 [ $ 3 ~ moyenne |
+    £ } €Moyenne de @ # n1 # €, @ # n2 # € et @ # n3 # € : @ # moyenne [ |
+(
