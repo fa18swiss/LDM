@@ -101,6 +101,10 @@ def compile(self, retour):
     self.children[2].compile(retour)
     retour.write(")):")
     retour.indent()
+    self.children[0].compile(retour)
+    retour.write(" = float(")
+    self.children[0].compile(retour)
+    retour.writeLine(")")
     self.children[3].compile(retour)
     retour.desindent()
 
