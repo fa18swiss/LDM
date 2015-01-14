@@ -55,7 +55,7 @@ def compile(self, retour):
 def compile(self, retour):
     retour.write("abs(")
     self.children[0].compile(retour)
-    retour.write(") < 0.001")
+    retour.write(") > 0.001")
 
 
 @addToClass(AST.WhileNode)
@@ -77,9 +77,9 @@ def compile(self, retour):
 
 @addToClass(AST.IfNode)
 def compile(self, retour):
-    retour.write("if ")
+    retour.write("if not(")
     self.children[0].compile(retour)
-    retour.writeLine(":")
+    retour.writeLine("):")
     retour.indent()
     if len(self.children) > 2:
         self.children[2].compile(retour)
