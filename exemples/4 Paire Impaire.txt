@@ -1,0 +1,19 @@
+]
+    10 ~ n |
+    n ~ nOriginal |
+    1 ~ bool |
+    à } bool []
+        ü } n [ ö ]
+            ü } n § 1 [ ö ]
+                n § 2 ~ n |
+            ( ä ]
+                £ } nOriginal # € est impaire.@ [ |
+                0 ~ bool |
+            (
+        ( ä ]
+            £ } nOriginal # € est paire.@ [ |
+            0 ~ bool |
+        (
+    (
+
+(
